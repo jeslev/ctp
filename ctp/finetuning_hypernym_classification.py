@@ -163,9 +163,10 @@ def train(
     dataset_type='sequence_classification',
     adam_eps=1e-8,
     seed_val=2020,
+    weights_filename=None,
 ):
     tokenizer = AutoTokenizer.from_pretrained(model)
-    model = AutoModelForSequenceClassification.from_pretrained(model)
+    model = AutoModelForSequenceClassification.from_pretrained(model, state_dict=weights_filename)
 
     if reload_from_checkpoint:
         ckpt_filename = os.path.join(ckpt_dir, ckpt_filename.format(epoch_num=reload_from_epoch_num))
@@ -293,7 +294,8 @@ def train(
         print(f"  Training epoch took: {format_time(time.time() - t0)}")
         torch.save(model.state_dict(),
             os.path.join(ckpt_dir, ckpt_filename.format(epoch_num=epoch_num)))
-        compute_metrics(labels=label_ids, label_predictions=np.argmax(logits, axis=1))
+        metrics_computed = compute_metrics(labels=label_ids, label_predictions=np.argmax(logits, axis=1))
+
 
         t0 = time.time()
 
@@ -331,6 +333,7 @@ if __name__ == "__main__":
     parser.add_argument("--max-len", default=64, type=int)
     parser.add_argument("--dataset-type", type=str, default='sequence_classification')
     parser.add_argument("--random-seed", type=int, default=0)
+    parser.add_argument("--load_pretrained_model", type=str, default=None)
 
     args = parser.parse_args()
     check_backwards_compatability(args)
@@ -370,4 +373,5 @@ if __name__ == "__main__":
           model=args.model,
           max_len=args.max_len,
           dataset_type=args.dataset_type,
-          test_wordnet_filenames=args.test_wordnet_filenames)
+          test_wordnet_filenames=args.test_wordnet_filenames,
+          weights_filename=args.load_pretrained_model)

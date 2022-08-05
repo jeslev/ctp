@@ -1,1 +1,13 @@
-{"train_filename": "wordnet_bansal_anc_0_sib_0_desc_0_rand_0_parent_1_train_subsample_0_pos_subset_None.json", "test_filenames": "wordnet_bansal_anc_0_sib_0_desc_0_rand_0_parent_1_dev_subsample_0_pos_subset_None.json", "ckpt_filename": "ckpt_par_roberta_large_1e6_seed2.json", "subtrees_filename": "subtrees_par_roberta_large_1e6_seed2.json", "results_filename": "logits_par_roberta_large_1e6_seed2.json", "metrics_filename": "metrics_par_roberta_large_1e6_seed2.json", "batch_size": 16, "num_epochs": 10, "num_labels": 2, "model": "roberta-large", "cased": "false", "test_wordnet_filenames": "bansal14_trees.csv", "learning_rate": 1e-06, "random_seed": 2}
+{
+  "train_filename": "wordnet_bansal_anc_0_sib_0_desc_0_rand_0_parent_1_train_subsample_0_pos_subset_None.json",
+  "test_filenames": "wordnet_bansal_anc_0_sib_0_desc_0_rand_0_parent_1_dev_subsample_0_pos_subset_None.json",
+  "ckpt_filename": "ckpt_par_roberta_large_1e6_seed2.json",
+  "subtrees_filename": "subtrees_par_roberta_large_1e6_seed2.json",
+  "results_filename": "logits_par_roberta_large_1e6_seed2.json",
+  "metrics_filename": "metrics_par_roberta_large_1e6_seed2_epoch_{epoch_num}.json",
+  "batch_size": 16, "num_epochs": 10, "num_labels": 2, "model": "roberta-large", "cased": "false",
+  "test_wordnet_filenames": "bansal14_trees.csv", "learning_rate": 1e-06, "random_seed": 2,
+  "wordnet_dir":  "./datasets/data_creators/df_csvs/",
+  "data_dir":  "./datasets/generated_training_pairs",
+  "results_dir":  "./outputs/results/",
+  "ckpt_dir":  "./outputs/ckpts/"}
