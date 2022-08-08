@@ -22,7 +22,8 @@ _python="/users/cost/jlovonme/envs/ctp/bin/python"
 
 configs=( 'WN_par_roberta_large_1e6_seed2' 'WN_par_roberta_large_1e6_wordnet_defs_seed2' 'WN_par_bert_1e6_seed2' 'WN_par_bert_1e6_wordnet_defs_seed2' )
 
-#export PYTHONPATH=".."
+export PYTHONPATH="."
+export TOKENIZERS_PARALLELISM=false
 
 cd scripts
 srun singularity exec ${_container} ${_python} run_finetuning_hypernym_classification_multidomain.py --experiment-name ${configs[$SLURM_ARRAY_TASK_ID]}

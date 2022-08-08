@@ -4,7 +4,7 @@
   "ckpt_filename": "ckpt_par_wordnet_defs_roberta_large_1e6_seed2.json",
   "subtrees_filename": "subtrees_par_wordnet_defs_roberta_large_1e6_seed2.json",
   "results_filename": "logits_par_wordnet_defs_roberta_large_1e6_seed2.json",
-  "metrics_filename": "metrics_par_wordnet_defs_roberta_large_1e6_seed2.json",
+  "metrics_filename": "metrics_par_wordnet_defs_roberta_large_1e6_seed2_epoch_{epoch_num}.json",
   "batch_size": 16, "num_epochs": 15, "num_labels": 2, "model": "roberta-large", "cased": "false",
   "test_wordnet_filenames": "bansal14_trees.csv", "learning_rate": 1e-06, "random_seed": 2,
   "dataset_type": "wordnet_definition",

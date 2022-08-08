@@ -164,6 +164,7 @@ def train(
     adam_eps=1e-8,
     seed_val=2020,
     weights_filename=None,
+    wordnet_dir='./datasets/data_creators/df_csvs/'
 ):
     tokenizer = AutoTokenizer.from_pretrained(model)
     model = AutoModelForSequenceClassification.from_pretrained(model, state_dict=weights_filename)
@@ -235,7 +236,8 @@ def train(
                     subtrees_filename=subtrees_filename,
                     results_dir=results_dir,
                     wordnet_filename=test_wordnet_filename,
-                    data_dir=data_dir)
+                    data_dir=data_dir,
+                    wordnet_dir=wordnet_dir)
 
     if validate_only:
         epoch_num = reload_from_epoch_num
@@ -334,6 +336,7 @@ if __name__ == "__main__":
     parser.add_argument("--dataset-type", type=str, default='sequence_classification')
     parser.add_argument("--random-seed", type=int, default=0)
     parser.add_argument("--load_pretrained_model", type=str, default=None)
+    parser.add_argument("--wordnet-dir", type=str, default='./datasets/data_creators/df_csvs/')
 
     args = parser.parse_args()
     check_backwards_compatability(args)
@@ -374,4 +377,5 @@ if __name__ == "__main__":
           max_len=args.max_len,
           dataset_type=args.dataset_type,
           test_wordnet_filenames=args.test_wordnet_filenames,
-          weights_filename=args.load_pretrained_model)
+          weights_filename=args.load_pretrained_model,
+          wordnet_dir=args.wordnet_dir)
