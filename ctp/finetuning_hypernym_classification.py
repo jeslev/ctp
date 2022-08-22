@@ -335,7 +335,7 @@ if __name__ == "__main__":
     parser.add_argument("--max-len", default=64, type=int)
     parser.add_argument("--dataset-type", type=str, default='sequence_classification')
     parser.add_argument("--random-seed", type=int, default=0)
-    parser.add_argument("--load_pretrained_model", type=str, default=None)
+    parser.add_argument("--load-pretrained-model", type=str, default=None)
     parser.add_argument("--wordnet-dir", type=str, default='./datasets/data_creators/df_csvs/')
 
     args = parser.parse_args()
