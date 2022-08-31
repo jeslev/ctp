@@ -35,7 +35,8 @@ def command_from_params(experiment_parameters: Dict[str, Any]) -> str:
     test_filenames = experiment_parameters["test_filenames"]
     model = experiment_parameters["model"]
 
-    base_command = f"python -u ctp/finetuning_hypernym_classification.py --train-filename {train_filename} --test-filenames {test_filenames} --experiment-name {args.experiment_name} --validate-only {args.validate_only} --reload-from-epoch-num {args.reload_from_epoch_num} --reload-from-checkpoint {args.reload_from_checkpoint} "
+    #base_command = f"python -u ctp/finetuning_hypernym_classification.py --train-filename {train_filename} --test-filenames {test_filenames} --experiment-name {args.experiment_name} --validate-only {args.validate_only} --reload-from-epoch-num {args.reload_from_epoch_num} --reload-from-checkpoint {args.reload_from_checkpoint} "
+    base_command = f"python -u ctp/finetuning_hypclasif_hierarchy.py --train-filename {train_filename} --test-filenames {test_filenames} --experiment-name {args.experiment_name} --validate-only {args.validate_only} --reload-from-epoch-num {args.reload_from_epoch_num} --reload-from-checkpoint {args.reload_from_checkpoint} "
 
     # Add parameters that override the defaults
     for parameter_name, parameter_value in experiment_parameters.items():
