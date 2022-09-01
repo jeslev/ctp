@@ -280,8 +280,7 @@ def train(
             model.zero_grad()
             outputs = model(b_input_ids,
                     token_type_ids=None,
-                    attention_mask=b_input_mask,
-                    hierarchy_model=hierarchy_model)[0]
+                    attention_mask=b_input_mask)[0]
             loss_fct = CrossEntropyLoss()
             loss = loss_fct(outputs.view(-1, num_labels), b_labels.view(-1))
             total_loss += loss.item()
