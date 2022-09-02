@@ -13,7 +13,8 @@ class BertHierarchySeqClasification(BertPreTrainedModel):
 
         self.bert = BertModel(config)
         self.dropout = nn.Dropout(config.hidden_dropout_prob)
-        self.classifier = nn.Linear(config.hidden_size*2, config.num_labels)
+        #self.classifier = nn.Linear(config.hidden_size*2, config.num_labels) # for concat
+        self.classifier = nn.Linear(config.hidden_size, config.num_labels) # for sum
 
         self.init_weights()
 
@@ -61,7 +62,9 @@ class BertHierarchySeqClasification(BertPreTrainedModel):
         pooled_output = self.dropout(pooled_output)
         #print(cls_hierarchy.shape)
         #print(pooled_output.shape)
-        new_output = torch.cat((pooled_output, cls_hierarchy), 1)
+        
+        #new_output = torch.cat((pooled_output, cls_hierarchy), 1) # for concat
+        new_output = pooled_output + cls_hierarchy # for sum
         #logits = self.classifier(pooled_output)
         logits = self.classifier(new_output)
 

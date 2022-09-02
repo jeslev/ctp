@@ -172,7 +172,11 @@ def train(
     # Load hierarchy model
     h_config = AutoConfig.from_pretrained(hierarchy_model, output_hidden_states=True)
     h_model = AutoModel.from_pretrained(hierarchy_model, config=h_config)
-
+    
+    # Freeze model
+    for param in h_model.parameters():
+        param.requires_grad = False
+    
     h_model.to(device)
     h_model.eval()
 
