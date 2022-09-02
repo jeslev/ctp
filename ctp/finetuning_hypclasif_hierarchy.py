@@ -15,7 +15,7 @@ from transformers import AdamW, get_linear_schedule_with_warmup, AutoModelForSeq
     AutoTokenizer, AutoConfig, AutoModel
 from transformers.trainer import set_seed
 from typing import List
-from models import BertHierarchySeqClasification
+from models import BertHierarchySeqClasification, RobertaHierarchySeqClasification
 
 sys.path.append('.')
 
@@ -186,8 +186,8 @@ def train(
         model = BertHierarchySeqClasification.from_pretrained(model, config=config, state_dict=weights_filename)
         model.hierarchy = h_model
     elif model.startswith('roberta'):
-        config = AutoConfig.from_pretrained(model, state_dict=weights_filename)
-        model = AutoModelForSequenceClassification.from_pretrained(model, config=config, state_dict=weights_filename)
+        config = AutoConfig.from_pretrained(model)
+        model = RobertaHierarchySeqClasification.from_pretrained(model, config=config, state_dict=weights_filename)
         model.hierarchy = h_model
 
     if reload_from_checkpoint:
